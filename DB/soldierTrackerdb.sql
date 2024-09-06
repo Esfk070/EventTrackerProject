@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `soldier` (
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NULL,
   `create_date` DATETIME NULL,
-  `last_udate` DATETIME NULL,
+  `last_update` DATETIME NULL,
   `image_url` VARCHAR(2000) NULL,
   `enabled` TINYINT NULL,
   PRIMARY KEY (`id`))
@@ -47,7 +47,7 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `soldierTrackerdb`;
-INSERT INTO `soldier` (`id`, `first_name`, `last_name`, `create_date`, `last_udate`, `image_url`, `enabled`) VALUES (1, 'Frank', 'Castle', '2024-09-06', '2024-09-06', NULL, 1);
+INSERT INTO `soldier` (`id`, `first_name`, `last_name`, `create_date`, `last_update`, `image_url`, `enabled`) VALUES (1, 'Frank', 'Castle', '2024-09-06', '2024-09-06', NULL, 1);
 
 COMMIT;
 
