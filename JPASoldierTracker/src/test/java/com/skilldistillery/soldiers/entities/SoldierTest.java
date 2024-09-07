@@ -2,6 +2,7 @@ package com.skilldistillery.soldiers.entities;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
@@ -42,9 +43,27 @@ class SoldierTest {
 	}
 
 	@Test
-	void test() {
+	void test_Soldier_mapping() {
 		assertNotNull(soldier);
 		assertEquals("Alan", soldier.getFirstName());
+	}
+	@Test
+	void test_Soldier_has_many_acfts_mapping() {
+		assertNotNull(soldier);
+		assertTrue(soldier.getAcfts().size()>0);
+		System.out.println(soldier.getAcfts().size());
+	}
+	@Test
+	void test_Soldier_has_many_Weapons_mapping() {
+		assertNotNull(soldier);
+		assertTrue(soldier.getWeapons().size()>0);
+		System.out.println(soldier.getAcfts().size());
+	}
+	@Test
+	void test_Soldier_has_many_QualificationScore_mapping() {
+		assertNotNull(soldier);
+		assertTrue(soldier.getQualificationScores().size()>0);
+		System.out.println(soldier.getQualificationScores());
 	}
 
 }

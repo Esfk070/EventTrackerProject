@@ -42,9 +42,15 @@ class AcftTest {
 	}
 
 	@Test
-	void test() {
+	void test_basic_mapping() {
 		assertNotNull(acft);
 		assertEquals(600, acft.getScore());
+	}
+	@Test
+	void test_Acft_has_soldier() {
+		assertNotNull(acft);
+		acft.getSoldier().getFirstName();
+		assertEquals("Alan", acft.getSoldier().getFirstName());
 	}
 
 }

@@ -10,6 +10,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 @Entity
@@ -28,6 +29,12 @@ public class QualificationScore {
 	private LocalDateTime dateTaken;
 	
 	private Boolean passed;
+	
+	@ManyToOne
+	private Soldier soldier;
+	
+	@ManyToOne
+	private Nomenclature nomenclature;
 //	----------Constructors----------------------------------------------------------------------------
 
 	public QualificationScore() {
@@ -41,6 +48,24 @@ public class QualificationScore {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	
+
+	public Nomenclature getNomenclature() {
+		return nomenclature;
+	}
+
+	public void setNomenclature(Nomenclature nomenclature) {
+		this.nomenclature = nomenclature;
+	}
+
+	public Soldier getSoldier() {
+		return soldier;
+	}
+
+	public void setSoldier(Soldier soldier) {
+		this.soldier = soldier;
 	}
 
 	public Integer getScore() {

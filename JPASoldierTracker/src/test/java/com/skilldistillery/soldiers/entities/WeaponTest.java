@@ -42,9 +42,19 @@ class WeaponTest {
 	}
 
 	@Test
-	void test() {
+	void test_mapping() {
 		assertNotNull(weapon);
 		assertEquals(1234, weapon.getSerialNumber());
+	}
+	@Test
+	void test_weapon_has_soldier() {
+		assertNotNull(weapon);
+		assertEquals("Alan", weapon.getSoldier().getFirstName());
+	}
+	@Test
+	void test_weapon_has_nomenclature() {
+		assertNotNull(weapon);
+		assertEquals("M4", weapon.getNomenclature().getName());
 	}
 
 }

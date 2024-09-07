@@ -1,6 +1,7 @@
 package com.skilldistillery.soldiers.entities;
 
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import org.hibernate.annotations.CreationTimestamp;
@@ -11,6 +12,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Soldier {
@@ -45,21 +47,62 @@ public class Soldier {
 	private String description;
 	
 	private Integer dod;
+	
+	@OneToMany(mappedBy="soldier")
+	private List<Acft> acfts;
 
+	@OneToMany(mappedBy = "soldier")
+	private List<Weapon> weapons;
+	
+	@OneToMany(mappedBy = "soldier")
+	private List<QualificationScore> qualificationScores;
 //	----------Constructors----------------------------------------------------------------------------
 	
 	public Soldier() {
 		super();
 	}
 //	----------Getters and Setters ----------------------------------------------------------------------------
-
+	
+	
+	
+	
 	public int getId() {
 		return id;
 	}
 
+	public List<Acft> getAcfts() {
+		return acfts;
+	}
+
+
+
+
+	public void setAcfts(List<Acft> acfts) {
+		this.acfts = acfts;
+	}
+
+
+
+
 	public void setId(int id) {
 		this.id = id;
 	}
+
+	
+	
+	public List<QualificationScore> getQualificationScores() {
+		return qualificationScores;
+	}
+
+
+
+
+	public void setQualificationScores(List<QualificationScore> qualificationScores) {
+		this.qualificationScores = qualificationScores;
+	}
+
+
+
 
 	public String getFirstName() {
 		return firstName;
@@ -68,6 +111,21 @@ public class Soldier {
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
 	}
+	
+
+	public List<Weapon> getWeapons() {
+		return weapons;
+	}
+
+
+
+
+	public void setWeapons(List<Weapon> weapons) {
+		this.weapons = weapons;
+	}
+
+
+
 
 	public String getLastName() {
 		return lastName;

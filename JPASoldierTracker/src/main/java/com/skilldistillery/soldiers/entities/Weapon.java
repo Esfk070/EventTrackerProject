@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Weapon {
@@ -19,6 +20,12 @@ public class Weapon {
 	private Integer serialNumber;
 	
 	private Boolean fmc;
+	
+	@ManyToOne
+	private Soldier soldier;
+	
+	@ManyToOne
+	private Nomenclature nomenclature;
 //	----------Constructors----------------------------------------------------------------------------
 
 	public Weapon() {
@@ -32,6 +39,25 @@ public class Weapon {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	
+	
+	
+	public Nomenclature getNomenclature() {
+		return nomenclature;
+	}
+
+	public void setNomenclature(Nomenclature nomenclature) {
+		this.nomenclature = nomenclature;
+	}
+
+	public Soldier getSoldier() {
+		return soldier;
+	}
+
+	public void setSoldier(Soldier soldier) {
+		this.soldier = soldier;
 	}
 
 	public Integer getSerialNumber() {

@@ -59,11 +59,11 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `qualificationscore_weapon`
+-- Table `nomenclature`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `qualificationscore_weapon` ;
+DROP TABLE IF EXISTS `nomenclature` ;
 
-CREATE TABLE IF NOT EXISTS `qualificationscore_weapon` (
+CREATE TABLE IF NOT EXISTS `nomenclature` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(45) NULL,
   `enabled` TINYINT NULL,
@@ -92,7 +92,7 @@ CREATE TABLE IF NOT EXISTS `weapon` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_weapon_nomenclature1`
     FOREIGN KEY (`nomenclature_id`)
-    REFERENCES `qualificationscore_weapon` (`id`)
+    REFERENCES `nomenclature` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -121,7 +121,7 @@ CREATE TABLE IF NOT EXISTS `qualification_score` (
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_qualification_score_nomenclature1`
     FOREIGN KEY (`nomenclature_id`)
-    REFERENCES `qualificationscore_weapon` (`id`)
+    REFERENCES `nomenclature` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
@@ -168,14 +168,14 @@ COMMIT;
 
 
 -- -----------------------------------------------------
--- Data for table `qualificationscore_weapon`
+-- Data for table `nomenclature`
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `soldierTrackerdb`;
-INSERT INTO `qualificationscore_weapon` (`id`, `name`, `enabled`) VALUES (1, 'M4', 1);
-INSERT INTO `qualificationscore_weapon` (`id`, `name`, `enabled`) VALUES (2, 'M17', 1);
-INSERT INTO `qualificationscore_weapon` (`id`, `name`, `enabled`) VALUES (3, 'M240', 1);
-INSERT INTO `qualificationscore_weapon` (`id`, `name`, `enabled`) VALUES (4, 'M249', 1);
+INSERT INTO `nomenclature` (`id`, `name`, `enabled`) VALUES (1, 'M4', 1);
+INSERT INTO `nomenclature` (`id`, `name`, `enabled`) VALUES (2, 'M17', 1);
+INSERT INTO `nomenclature` (`id`, `name`, `enabled`) VALUES (3, 'M240', 1);
+INSERT INTO `nomenclature` (`id`, `name`, `enabled`) VALUES (4, 'M249', 1);
 
 COMMIT;
 

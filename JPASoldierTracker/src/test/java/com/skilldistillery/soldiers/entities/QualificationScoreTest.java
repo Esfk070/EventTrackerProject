@@ -42,9 +42,19 @@ class QualificationScoreTest {
 	}
 
 	@Test
-	void test() {
+	void test_mapping() {
 		assertNotNull(qualificationScore);
 		assertEquals(40, qualificationScore.getScore());
+	}
+	@Test
+	void test_qualificationScore_has_soldier() {
+		assertNotNull(qualificationScore.getSoldier());
+		
+	}
+	@Test
+	void test_qualificationScore_has_nomenclature() {
+		assertNotNull(qualificationScore.getNomenclature());
+		
 	}
 
 }

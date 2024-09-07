@@ -8,6 +8,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
 
 @Entity
 public class Acft {
@@ -24,6 +25,9 @@ public class Acft {
 	private LocalDateTime dateTaken;
 	
 	private Boolean passed;
+	
+	@ManyToOne
+	private Soldier soldier;
 //	----------Constructors----------------------------------------------------------------------------
 
 	public Acft() {
@@ -31,9 +35,20 @@ public class Acft {
 	}
 //	----------Getters and Setters----------------------------------------------------------------------------
 
+	
 	public int getId() {
 		return id;
 	}
+
+	public Soldier getSoldier() {
+		return soldier;
+	}
+
+
+	public void setSoldier(Soldier soldier) {
+		this.soldier = soldier;
+	}
+
 
 	public void setId(int id) {
 		this.id = id;

@@ -1,16 +1,18 @@
 package com.skilldistillery.soldiers.entities;
 
+import java.util.List;
 import java.util.Objects;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "qualificationscore_weapon") 
-public class QualificationScoreWeapon {
+@Table(name = "nomenclature") 
+public class Nomenclature {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,9 +21,16 @@ public class QualificationScoreWeapon {
 	private String name;
 	
 	private Boolean enabled;
+	
+	@OneToMany(mappedBy = "nomenclature")
+	private List<Weapon> weapons;
+	
+	@OneToMany(mappedBy = "nomenclature")
+	private List<QualificationScore> qualificationScores;
+	
 //	----------Constructors----------------------------------------------------------------------------
 	
-	public QualificationScoreWeapon() {
+	public Nomenclature() {
 		super();
 	}
 
@@ -35,6 +44,25 @@ public class QualificationScoreWeapon {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+	
+	
+	
+
+	public List<QualificationScore> getQualificationScores() {
+		return qualificationScores;
+	}
+
+	public void setQualificationScores(List<QualificationScore> qualificationScores) {
+		this.qualificationScores = qualificationScores;
+	}
+
+	public List<Weapon> getWeapons() {
+		return weapons;
+	}
+
+	public void setWeapons(List<Weapon> weapons) {
+		this.weapons = weapons;
 	}
 
 	public String getName() {
@@ -67,7 +95,7 @@ public class QualificationScoreWeapon {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		QualificationScoreWeapon other = (QualificationScoreWeapon) obj;
+		Nomenclature other = (Nomenclature) obj;
 		return id == other.id;
 	}
 
