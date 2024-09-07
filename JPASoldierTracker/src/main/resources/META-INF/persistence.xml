@@ -8,6 +8,10 @@
 		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
 
 		<class>com.skilldistillery.soldiers.entities.Soldier</class>
+		<class>com.skilldistillery.soldiers.entities.Acft</class>
+		<class>com.skilldistillery.soldiers.entities.Nomenclature</class>
+		<class>com.skilldistillery.soldiers.entities.QualificationScore</class>
+		<class>com.skilldistillery.soldiers.entities.Weapon</class>
 
 
 

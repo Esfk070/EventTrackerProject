@@ -22,7 +22,7 @@ DROP TABLE IF EXISTS `soldier` ;
 
 CREATE TABLE IF NOT EXISTS `soldier` (
   `id` INT NOT NULL AUTO_INCREMENT,
-  `rank` VARCHAR(45) NULL,
+  `military_rank` VARCHAR(45) NULL,
   `first_name` VARCHAR(45) NOT NULL,
   `last_name` VARCHAR(45) NOT NULL,
   `create_date` DATETIME NULL,
@@ -142,12 +142,12 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `soldierTrackerdb`;
-INSERT INTO `soldier` (`id`, `rank`, `first_name`, `last_name`, `create_date`, `last_update`, `image_url`, `enabled`, `profile`, `description`, `dod`) VALUES (1, 'Major', 'Alan', 'Schaefer', '2024-09-06', '2024-09-06', NULL, 1, 0, NULL, 123);
-INSERT INTO `soldier` (`id`, `rank`, `first_name`, `last_name`, `create_date`, `last_update`, `image_url`, `enabled`, `profile`, `description`, `dod`) VALUES (2, 'CIA', 'Al', 'Dillon', '2024-09-06', '2024-09-06', NULL, 1, 0, NULL, 456);
-INSERT INTO `soldier` (`id`, `rank`, `first_name`, `last_name`, `create_date`, `last_update`, `image_url`, `enabled`, `profile`, `description`, `dod`) VALUES (3, 'SFC', 'Blain', 'Cooper', '2024-09-06', '2024-09-06', NULL, 1, 0, NULL, 789);
-INSERT INTO `soldier` (`id`, `rank`, `first_name`, `last_name`, `create_date`, `last_update`, `image_url`, `enabled`, `profile`, `description`, `dod`) VALUES (4, 'MSG', 'Mac', 'Elliot', '2024-09-06', '2024-09-06', NULL, 1, 1, NULL, 234);
-INSERT INTO `soldier` (`id`, `rank`, `first_name`, `last_name`, `create_date`, `last_update`, `image_url`, `enabled`, `profile`, `description`, `dod`) VALUES (5, 'SSG', 'Richard ', 'Chaves', '2024-09-06', '2024-09-06', NULL, 0, 0, NULL, 567);
-INSERT INTO `soldier` (`id`, `rank`, `first_name`, `last_name`, `create_date`, `last_update`, `image_url`, `enabled`, `profile`, `description`, `dod`) VALUES (6, 'SFC', 'Billy', 'Sole', '2024-09-06', '2024-09-06', NULL, 1, 1, NULL, 763);
+INSERT INTO `soldier` (`id`, `military_rank`, `first_name`, `last_name`, `create_date`, `last_update`, `image_url`, `enabled`, `profile`, `description`, `dod`) VALUES (1, 'Major', 'Alan', 'Schaefer', '2024-09-06', '2024-09-06', NULL, 1, 0, NULL, 123);
+INSERT INTO `soldier` (`id`, `military_rank`, `first_name`, `last_name`, `create_date`, `last_update`, `image_url`, `enabled`, `profile`, `description`, `dod`) VALUES (2, 'CIA', 'Al', 'Dillon', '2024-09-06', '2024-09-06', NULL, 1, 0, NULL, 456);
+INSERT INTO `soldier` (`id`, `military_rank`, `first_name`, `last_name`, `create_date`, `last_update`, `image_url`, `enabled`, `profile`, `description`, `dod`) VALUES (3, 'SFC', 'Blain', 'Cooper', '2024-09-06', '2024-09-06', NULL, 1, 0, NULL, 789);
+INSERT INTO `soldier` (`id`, `military_rank`, `first_name`, `last_name`, `create_date`, `last_update`, `image_url`, `enabled`, `profile`, `description`, `dod`) VALUES (4, 'MSG', 'Mac', 'Elliot', '2024-09-06', '2024-09-06', NULL, 1, 1, NULL, 234);
+INSERT INTO `soldier` (`id`, `military_rank`, `first_name`, `last_name`, `create_date`, `last_update`, `image_url`, `enabled`, `profile`, `description`, `dod`) VALUES (5, 'SSG', 'Richard ', 'Chaves', '2024-09-06', '2024-09-06', NULL, 0, 0, NULL, 567);
+INSERT INTO `soldier` (`id`, `military_rank`, `first_name`, `last_name`, `create_date`, `last_update`, `image_url`, `enabled`, `profile`, `description`, `dod`) VALUES (6, 'SFC', 'Billy', 'Sole', '2024-09-06', '2024-09-06', NULL, 1, 1, NULL, 763);
 
 COMMIT;
 

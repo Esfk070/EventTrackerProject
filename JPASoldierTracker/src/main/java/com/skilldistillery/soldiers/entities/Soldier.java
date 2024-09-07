@@ -23,7 +23,8 @@ public class Soldier {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	private String rank;
+	@Column(name = "military_rank")
+	private String militaryRank;
 	
 	@Column(name = "first_name")
 	private String firstName;
@@ -171,11 +172,11 @@ public class Soldier {
 	
 	
 	public String getRank() {
-		return rank;
+		return militaryRank;
 	}
 
 	public void setRank(String rank) {
-		this.rank = rank;
+		this.militaryRank = rank;
 	}
 
 	public Boolean getProfile() {

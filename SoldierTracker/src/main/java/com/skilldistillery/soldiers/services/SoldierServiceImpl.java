@@ -34,8 +34,9 @@ public class SoldierServiceImpl implements SoldierService {
 
 	@Override
 	public Soldier create(Soldier soldier) {
-		// TODO Auto-generated method stub
-		return null;
+		System.out.println(soldier);
+		soldierRepo.saveAndFlush(soldier);
+		return soldier;
 	}
 
 	@Override
