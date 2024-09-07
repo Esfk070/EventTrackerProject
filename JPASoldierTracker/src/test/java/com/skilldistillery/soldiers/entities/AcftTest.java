@@ -13,11 +13,11 @@ import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
 
-class SoldierTest {
+class AcftTest {
 	
 	private static EntityManagerFactory emf;
 	private EntityManager em;
-	private Soldier soldier;
+	private Acft acft;
 
 	@BeforeAll
 	static void setUpBeforeClass() throws Exception {
@@ -32,19 +32,19 @@ class SoldierTest {
 	@BeforeEach
 	void setUp() throws Exception {
 		em = emf.createEntityManager();
-		soldier = em.find(Soldier.class, 1);
+		acft = em.find(Acft.class, 1);
 	}
 
 	@AfterEach
 	void tearDown() throws Exception {
 		em.close();
-		soldier = null;
+		acft = null;
 	}
 
 	@Test
 	void test() {
-		assertNotNull(soldier);
-		assertEquals("Alan", soldier.getFirstName());
+		assertNotNull(acft);
+		assertEquals(600, acft.getScore());
 	}
 
 }

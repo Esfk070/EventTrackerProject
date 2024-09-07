@@ -16,7 +16,8 @@ public class SoldierServiceImpl implements SoldierService {
 	
 	@Override
 	public List<Soldier> getAllSoldiers() {
-		return soldierRepo.findAll();
+		
+		return soldierRepo.findByEnabledTrue();
 
 	}
 

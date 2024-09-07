@@ -19,6 +19,8 @@ public class Soldier {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	private String rank;
+	
 	@Column(name = "first_name")
 	private String firstName;
 	
@@ -37,12 +39,19 @@ public class Soldier {
 	private String imageUrl;
 	
 	private Boolean enabled;
+	
+	private Boolean profile;
+	
+	private String description;
+	
+	private Integer dod;
 
 //	----------Constructors----------------------------------------------------------------------------
 	
 	public Soldier() {
 		super();
 	}
+//	----------Getters and Setters ----------------------------------------------------------------------------
 
 	public int getId() {
 		return id;
@@ -96,10 +105,54 @@ public class Soldier {
 		return enabled;
 	}
 
+	
+	
+	public String getRank() {
+		return rank;
+	}
+
+	public void setRank(String rank) {
+		this.rank = rank;
+	}
+
+	public Boolean getProfile() {
+		return profile;
+	}
+
+	public void setProfile(Boolean profile) {
+		this.profile = profile;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Integer getDod() {
+		return dod;
+	}
+
+	public void setDod(Integer dod) {
+		this.dod = dod;
+	}
+
 	public void setEnabled(Boolean enabled) {
 		this.enabled = enabled;
 	}
 
+	
+	
+	
+	
+//	----------hashCode Equals toString----------------------------------------------------------------------------
+
+	
+	
+	
+	
 	@Override
 	public int hashCode() {
 		return Objects.hash(id);
