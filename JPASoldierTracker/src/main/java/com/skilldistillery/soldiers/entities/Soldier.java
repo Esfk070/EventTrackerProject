@@ -7,6 +7,8 @@ import java.util.Objects;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -48,12 +50,15 @@ public class Soldier {
 	
 	private Integer dod;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy="soldier")
 	private List<Acft> acfts;
-
+	
+	@JsonIgnore
 	@OneToMany(mappedBy = "soldier")
 	private List<Weapon> weapons;
 	
+	@JsonIgnore
 	@OneToMany(mappedBy = "soldier")
 	private List<QualificationScore> qualificationScores;
 //	----------Constructors----------------------------------------------------------------------------
