@@ -25,7 +25,10 @@ public class SoldierServiceImpl implements SoldierService {
 	@Override
 	public Soldier showSoldier(int soldierId) {
 		Optional<Soldier> soldierOpt = soldierRepo.findById(soldierId);
-		if (soldierOpt != null) {
+		System.out.println();
+		System.out.println(soldierOpt);
+		System.out.println();
+ 		if (soldierOpt.isPresent()) {
 			Soldier soldier = soldierOpt.get();
 			return soldier;
 		}
@@ -41,14 +44,40 @@ public class SoldierServiceImpl implements SoldierService {
 
 	@Override
 	public Soldier update(int soldierId, Soldier updatingSoldier) {
-		// TODO Auto-generated method stub
-		return null;
+		Optional<Soldier> oldSoldierOpt= soldierRepo.findById(soldierId);
+		Soldier managedSoldier = null;
+		if(oldSoldierOpt.isPresent()) {
+			managedSoldier = oldSoldierOpt.get();
+			
+		}
+		managedSoldier.setAcfts(updatingSoldier.getAcfts());
+		managedSoldier.setCreateDate(updatingSoldier.getCreateDate());
+		managedSoldier.setDescription(updatingSoldier.getDescription());
+		managedSoldier.setDod(updatingSoldier.getDod());
+		managedSoldier.setEnabled(updatingSoldier.getEnabled());
+		managedSoldier.setFirstName(updatingSoldier.getFirstName());
+		managedSoldier.setImageUrl(updatingSoldier.getImageUrl());
+		managedSoldier.setLastName(updatingSoldier.getLastName());
+		managedSoldier.setLastUpdate(updatingSoldier.getLastUpdate());
+		managedSoldier.setProfile(updatingSoldier.getProfile());
+		managedSoldier.setQualificationScores(updatingSoldier.getQualificationScores());
+		managedSoldier.setWeapons(updatingSoldier.getWeapons());
+		
+		soldierRepo.saveAndFlush(managedSoldier);
+		
+		return managedSoldier;
 	}
 
 	@Override
 	public boolean delete(int soldierId) {
-		// TODO Auto-generated method stub
-		return false;
+		boolean deleted = false;
+		Soldier deletedSoldier = soldierRepo.getById(soldierId);
+		soldierRepo.deleteById(soldierId);
+		if (deletedSoldier == null) {
+			deleted = true;
+		}
+		
+		return deleted;
 	}
 
 }

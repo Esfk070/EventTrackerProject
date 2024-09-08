@@ -3,9 +3,11 @@ package com.skilldistillery.soldiers.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -59,4 +61,46 @@ public class SoldierController {
 		return createdSoldier;
 	}
 
+	
+	@PutMapping("soldier/{soldierId}")
+	public Soldier updateSoldier(@PathVariable("soldierId") int soldierId,
+								 @RequestBody Soldier soldier,
+								 HttpServletResponse response) {
+		Soldier updatedSoldier = null;
+		
+		updatedSoldier = soldierService.update(soldierId, soldier);
+		System.out.println();
+		System.out.println();
+		System.out.println(soldierService);
+		System.out.println();
+		return updatedSoldier;
+	}
+	
+	@DeleteMapping("soldier/{soldierId}")
+	public void deleteSoldier(
+			 			@PathVariable("soldierId") int soldierId,
+			 			HttpServletResponse response
+			 			){
+		Soldier soldier = soldierService.showSoldier(soldierId);
+		
+		if (soldier == null){
+			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+		}
+		else {
+			try {
+				soldierService.delete(soldierId);
+			} catch (Exception e) {
+				e.printStackTrace();
+				response.setStatus(400);
+			}
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
 }
