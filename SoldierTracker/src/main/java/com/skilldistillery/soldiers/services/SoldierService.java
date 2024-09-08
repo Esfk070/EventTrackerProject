@@ -11,5 +11,6 @@ public interface SoldierService {
 	Soldier create(Soldier soldier);
 	Soldier update(int soldierId, Soldier updatingSoldier);
 	boolean delete(int soldierId);
+	Soldier unenable(int soldierId);
 
 }

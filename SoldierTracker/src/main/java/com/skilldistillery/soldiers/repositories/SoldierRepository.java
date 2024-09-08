@@ -8,5 +8,4 @@ import com.skilldistillery.soldiers.entities.Soldier;
 
 public interface SoldierRepository extends JpaRepository<Soldier, Integer> {
 	List<Soldier> findByEnabledTrue();
-
 }

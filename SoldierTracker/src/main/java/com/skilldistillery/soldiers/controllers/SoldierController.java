@@ -34,6 +34,10 @@ public class SoldierController {
 	@GetMapping("soldier/{id}")
 	public Soldier getSoldierById(@PathVariable("id") Integer id, HttpServletResponse res) {
 		Soldier soldier = soldierService.showSoldier(id);
+		if (soldier == null) {
+			res.setStatus(HttpServletResponse.SC_NOT_FOUND);
+			return soldier;
+		}
 		if (soldier.getEnabled()==false || soldier == null)
 		{
 			soldier = null;
@@ -69,10 +73,12 @@ public class SoldierController {
 		Soldier updatedSoldier = null;
 		
 		updatedSoldier = soldierService.update(soldierId, soldier);
-		System.out.println();
-		System.out.println();
-		System.out.println(soldierService);
-		System.out.println();
+		
+		if (updatedSoldier==null)
+		{
+
+			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+		}
 		return updatedSoldier;
 	}
 	
@@ -96,11 +102,21 @@ public class SoldierController {
 		}
 		
 	}
-	
-	
-	
-	
-	
+	//unenable Soldier
+	@DeleteMapping("soldierun/{soldierId}")
+	public void unenableSoldier(@PathVariable("soldierId") int soldierId,
+ 			HttpServletResponse response
+ 			){
+		Soldier soldier = soldierService.showSoldier(soldierId);
+		if (soldier == null) {
+			response.setStatus(404);
+
+		}
+		else {
+			soldierService.unenable(soldierId);
+			
+		}
+	}
 	
 	
 }

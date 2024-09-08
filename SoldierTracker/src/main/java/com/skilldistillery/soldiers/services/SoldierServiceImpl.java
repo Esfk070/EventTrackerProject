@@ -17,8 +17,9 @@ public class SoldierServiceImpl implements SoldierService {
 	
 	@Override
 	public List<Soldier> getAllSoldiers() {
-		
+
 		return soldierRepo.findByEnabledTrue();
+		
 
 	}
 
@@ -49,21 +50,21 @@ public class SoldierServiceImpl implements SoldierService {
 		if(oldSoldierOpt.isPresent()) {
 			managedSoldier = oldSoldierOpt.get();
 			
+			managedSoldier.setAcfts(updatingSoldier.getAcfts());
+			managedSoldier.setCreateDate(updatingSoldier.getCreateDate());
+			managedSoldier.setDescription(updatingSoldier.getDescription());
+			managedSoldier.setDod(updatingSoldier.getDod());
+			managedSoldier.setEnabled(updatingSoldier.getEnabled());
+			managedSoldier.setFirstName(updatingSoldier.getFirstName());
+			managedSoldier.setImageUrl(updatingSoldier.getImageUrl());
+			managedSoldier.setLastName(updatingSoldier.getLastName());
+			managedSoldier.setLastUpdate(updatingSoldier.getLastUpdate());
+			managedSoldier.setProfile(updatingSoldier.getProfile());
+			managedSoldier.setQualificationScores(updatingSoldier.getQualificationScores());
+			managedSoldier.setWeapons(updatingSoldier.getWeapons());
+			
+			soldierRepo.saveAndFlush(managedSoldier);
 		}
-		managedSoldier.setAcfts(updatingSoldier.getAcfts());
-		managedSoldier.setCreateDate(updatingSoldier.getCreateDate());
-		managedSoldier.setDescription(updatingSoldier.getDescription());
-		managedSoldier.setDod(updatingSoldier.getDod());
-		managedSoldier.setEnabled(updatingSoldier.getEnabled());
-		managedSoldier.setFirstName(updatingSoldier.getFirstName());
-		managedSoldier.setImageUrl(updatingSoldier.getImageUrl());
-		managedSoldier.setLastName(updatingSoldier.getLastName());
-		managedSoldier.setLastUpdate(updatingSoldier.getLastUpdate());
-		managedSoldier.setProfile(updatingSoldier.getProfile());
-		managedSoldier.setQualificationScores(updatingSoldier.getQualificationScores());
-		managedSoldier.setWeapons(updatingSoldier.getWeapons());
-		
-		soldierRepo.saveAndFlush(managedSoldier);
 		
 		return managedSoldier;
 	}
@@ -78,6 +79,20 @@ public class SoldierServiceImpl implements SoldierService {
 		}
 		
 		return deleted;
+	}
+
+	@Override
+	public Soldier unenable(int soldierId) {
+		Soldier soldier = null;
+		Optional<Soldier> soldierOpt = soldierRepo.findById(soldierId);
+		if (soldierOpt.isPresent()) {
+			soldier = soldierOpt.get();
+			soldier.setEnabled(false);
+			soldierRepo.saveAndFlush(soldier);
+			}
+		
+		
+		return soldier;
 	}
 
 }
