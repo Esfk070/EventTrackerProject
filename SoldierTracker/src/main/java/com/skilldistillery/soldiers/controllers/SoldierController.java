@@ -21,16 +21,16 @@ import jakarta.servlet.http.HttpServletResponse;
 @RestController
 @RequestMapping("api")
 public class SoldierController {
-	
+
 	@Autowired
 	private SoldierService soldierService;
-	
+
 	@GetMapping("soldiers")
-	public List<Soldier> getSoldierList(){
-		
+	public List<Soldier> getSoldierList() {
+
 		return soldierService.getAllSoldiers();
 	}
-	
+
 	@GetMapping("soldier/{id}")
 	public Soldier getSoldierById(@PathVariable("id") Integer id, HttpServletResponse res) {
 		Soldier soldier = soldierService.showSoldier(id);
@@ -38,85 +38,85 @@ public class SoldierController {
 			res.setStatus(HttpServletResponse.SC_NOT_FOUND);
 			return soldier;
 		}
-		if (soldier.getEnabled()==false || soldier == null)
-		{
+		if (soldier.getEnabled() == false || soldier == null) {
 			soldier = null;
 			res.setStatus(HttpServletResponse.SC_NOT_FOUND);
 		}
-		
+
 		return soldier;
 	}
-	
+
 	@PostMapping("soldier")
-	public Soldier createSoldier(@RequestBody Soldier soldier, HttpServletResponse response, HttpServletRequest request) {
-		
-		Soldier createdSoldier = null;	
+	public Soldier createSoldier(@RequestBody Soldier soldier, HttpServletResponse response,
+			HttpServletRequest request) {
+
+		Soldier createdSoldier = null;
 		try {
 			createdSoldier = soldierService.create(soldier);
 			response.setStatus(HttpServletResponse.SC_CREATED);
-			response.setHeader("Location", request.getRequestURL()+ "/" 
-			+ createdSoldier.getId());
+			response.setHeader("Location", request.getRequestURL() + "/" + createdSoldier.getId());
 		} catch (Exception e) {
-			
+
 			e.printStackTrace();
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST);
 		}
-		
+
 		return createdSoldier;
 	}
 
-	
 	@PutMapping("soldier/{soldierId}")
-	public Soldier updateSoldier(@PathVariable("soldierId") int soldierId,
-								 @RequestBody Soldier soldier,
-								 HttpServletResponse response) {
+	public Soldier updateSoldier(@PathVariable("soldierId") int soldierId, @RequestBody Soldier soldier,
+			HttpServletResponse response) {
 		Soldier updatedSoldier = null;
-		
-		updatedSoldier = soldierService.update(soldierId, soldier);
-		
-		if (updatedSoldier==null)
-		{
 
-			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
+
+		if (soldier.getFirstName() == null || soldier.getLastName() == null) {
+			response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
+
 		}
+		else if (soldier != null) {
+			
+			updatedSoldier = soldierService.update(soldierId, soldier);
+			if (updatedSoldier == null) {
+				
+				response.setStatus(HttpServletResponse.SC_NOT_FOUND); // 404
+			}
+		}
+
 		return updatedSoldier;
 	}
-	
+
 	@DeleteMapping("soldier/{soldierId}")
-	public void deleteSoldier(
-			 			@PathVariable("soldierId") int soldierId,
-			 			HttpServletResponse response
-			 			){
+	public void deleteSoldier(@PathVariable("soldierId") int soldierId, HttpServletResponse response) {
 		Soldier soldier = soldierService.showSoldier(soldierId);
 		
-		if (soldier == null){
+		if (soldier == null) 
+		{
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-		}
-		else {
+		} else 
+		{
 			try {
 				soldierService.delete(soldierId);
+				response.setStatus(204);
 			} catch (Exception e) {
 				e.printStackTrace();
 				response.setStatus(400);
 			}
 		}
-		
+
 	}
-	//unenable Soldier
+
+	// unenable Soldier
 	@DeleteMapping("soldierun/{soldierId}")
-	public void unenableSoldier(@PathVariable("soldierId") int soldierId,
- 			HttpServletResponse response
- 			){
+	public void unenableSoldier(@PathVariable("soldierId") int soldierId, HttpServletResponse response) {
 		Soldier soldier = soldierService.showSoldier(soldierId);
 		if (soldier == null) {
 			response.setStatus(404);
 
-		}
-		else {
+		} else {
 			soldierService.unenable(soldierId);
-			
+
 		}
 	}
-	
-	
+
 }
