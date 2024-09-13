@@ -22,6 +22,8 @@ Full-stack project using MySQL, Spring Boot, Spring Data JPA.
 * Un-Enable Soldier
   * Request: DELETE, URL: http://localhost:8085/api/soldierun/7
 
+## HTML/JavaScript Front End using XHR/AJAX
+
 ## REST Endpoints
 | HTTP Verb | URI                  | Request Body | Response Body | Response Codes |
 |-----------|----------------------|--------------|---------------|----------------|

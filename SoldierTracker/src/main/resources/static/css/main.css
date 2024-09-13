@@ -1,4 +1,13 @@
 
 body{
-	bakcground-color: lightgrey;
+	background-color: lightgrey;
+}
+
+td{
+	border: solid black 1px;
+	
+}
+table{
+	border: solid black 1px;
+	border-spacing:0;
 }
