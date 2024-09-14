@@ -142,11 +142,11 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- -----------------------------------------------------
 START TRANSACTION;
 USE `soldierTrackerdb`;
-INSERT INTO `soldier` (`id`, `military_rank`, `first_name`, `last_name`, `create_date`, `last_update`, `image_url`, `enabled`, `profile`, `description`, `dod`) VALUES (1, 'Major', 'Alan', 'Schaefer', '2024-09-06', '2024-09-06', NULL, 1, 0, NULL, 123);
-INSERT INTO `soldier` (`id`, `military_rank`, `first_name`, `last_name`, `create_date`, `last_update`, `image_url`, `enabled`, `profile`, `description`, `dod`) VALUES (2, 'CIA', 'Al', 'Dillon', '2024-09-06', '2024-09-06', NULL, 1, 0, NULL, 456);
-INSERT INTO `soldier` (`id`, `military_rank`, `first_name`, `last_name`, `create_date`, `last_update`, `image_url`, `enabled`, `profile`, `description`, `dod`) VALUES (3, 'SFC', 'Blain', 'Cooper', '2024-09-06', '2024-09-06', NULL, 1, 0, NULL, 789);
-INSERT INTO `soldier` (`id`, `military_rank`, `first_name`, `last_name`, `create_date`, `last_update`, `image_url`, `enabled`, `profile`, `description`, `dod`) VALUES (4, 'MSG', 'Mac', 'Elliot', '2024-09-06', '2024-09-06', NULL, 1, 1, NULL, 234);
-INSERT INTO `soldier` (`id`, `military_rank`, `first_name`, `last_name`, `create_date`, `last_update`, `image_url`, `enabled`, `profile`, `description`, `dod`) VALUES (5, 'SSG', 'Richard ', 'Chaves', '2024-09-06', '2024-09-06', NULL, 0, 0, NULL, 567);
+INSERT INTO `soldier` (`id`, `military_rank`, `first_name`, `last_name`, `create_date`, `last_update`, `image_url`, `enabled`, `profile`, `description`, `dod`) VALUES (1, 'Major', 'Alan', 'Schaefer', '2024-09-06', '2024-09-06', 'https://comicvine.gamespot.com/a/uploads/scale_small/10/105264/4252630-3000633511-51838.jpg', 1, 0, NULL, 123);
+INSERT INTO `soldier` (`id`, `military_rank`, `first_name`, `last_name`, `create_date`, `last_update`, `image_url`, `enabled`, `profile`, `description`, `dod`) VALUES (2, 'CIA', 'Al', 'Dillon', '2024-09-06', '2024-09-06', 'https://static.wikia.nocookie.net/absolutehorror/images/d/de/George_Dillon.png/revision/latest?cb=20130611182801', 1, 0, NULL, 456);
+INSERT INTO `soldier` (`id`, `military_rank`, `first_name`, `last_name`, `create_date`, `last_update`, `image_url`, `enabled`, `profile`, `description`, `dod`) VALUES (3, 'SFC', 'Blain', 'Cooper', '2024-09-06', '2024-09-06', 'https://www.avpgalaxy.net/wordpress/wp-content/uploads/2020/11/predator1-promo-018.jpg', 1, 0, NULL, 789);
+INSERT INTO `soldier` (`id`, `military_rank`, `first_name`, `last_name`, `create_date`, `last_update`, `image_url`, `enabled`, `profile`, `description`, `dod`) VALUES (4, 'MSG', 'Mac', 'Elliot', '2024-09-06', '2024-09-06', 'https://www.avpgalaxy.net/wordpress/wp-content/uploads/2020/11/predator1-still-072.jpg', 1, 1, NULL, 234);
+INSERT INTO `soldier` (`id`, `military_rank`, `first_name`, `last_name`, `create_date`, `last_update`, `image_url`, `enabled`, `profile`, `description`, `dod`) VALUES (5, 'SSG', 'Richard ', 'Chaves', '2024-09-06', '2024-09-06', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrZIdZ3rzDfJXkHOuksKeN81CEfVXryXGqBA&s', 0, 0, NULL, 567);
 INSERT INTO `soldier` (`id`, `military_rank`, `first_name`, `last_name`, `create_date`, `last_update`, `image_url`, `enabled`, `profile`, `description`, `dod`) VALUES (6, 'SFC', 'Billy', 'Sole', '2024-09-06', '2024-09-06', NULL, 1, 1, NULL, 763);
 
 COMMIT;

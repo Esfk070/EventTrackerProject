@@ -15,6 +15,7 @@ function init(){
 		let rank = document.createSoldierForm.rank.value;
 		let description = document.createSoldierForm.description.value;
 		let dod = document.createSoldierForm.dod.value;
+		let imageUrl = document.createSoldierForm.imageUrl.value;
 		
 		let soldierObject = {
 			firstName: firstName,
@@ -22,6 +23,7 @@ function init(){
 			rank: rank,
 			description: description,			
 			dod: dod,
+			imageUrl: imageUrl
 			}
 		
 		createSoldier(soldierObject);
@@ -82,7 +84,7 @@ function displaySoldiersList(soldiers){
 		console.log(soldier.firstName);
 		
 		let row = document.createElement('tr');
-		
+
 		let colRank = document.createElement('td');
 		colRank.textContent = soldier.rank;
 		row.append(colRank);
@@ -95,8 +97,14 @@ function displaySoldiersList(soldiers){
 		colLname.textContent = soldier.lastName;
 		row.append(colLname);
 		
+		//Click row
+		row.addEventListener('click', function(){
+			console.log(soldier.firstName);
+			console.log("about to displaySoldier");
+			displaySoldier(soldier);
+		})
 		table.append(row);
-		
+		////NEXT user story is to get the soldiers information to pop up when they are called
 	}
 }
 
@@ -123,6 +131,8 @@ function createSoldier(soldierObject){
 };
 
 function displaySoldier(soldier){
+	console.log("displaySoldier- " + soldier);
+	
 	let addNewSoldierDiv =  document.getElementById('addNewSoldierDiv');
 	addNewSoldierDiv.textContent='';
 	//Soldier name
@@ -145,8 +155,14 @@ function displaySoldier(soldier){
 	li.textContent = 'Profile:' + soldier.profile;
 	ul.appendChild(li);		
 
-
+//	let a = document.createElement('a');
+//	a.href = soldier.imageUrl;
+//	addNewSoldierDiv.appendChild(a);
 	
+	let img = document.createElement('img');
+	img.src = soldier.imageUrl;
+	addNewSoldierDiv.appendChild(img);
+
 	
 }
 
