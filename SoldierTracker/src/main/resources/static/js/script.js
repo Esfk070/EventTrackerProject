@@ -17,6 +17,7 @@ function init(){
 		let dod = document.createSoldierForm.dod.value;
 		let imageUrl = document.createSoldierForm.imageUrl.value;
 		
+		
 		let soldierObject = {
 			firstName: firstName,
 			lastName: lastName,
@@ -29,7 +30,46 @@ function init(){
 		createSoldier(soldierObject);
 	})
 	//TODO = event listeners, etc
+	document.acftAverage.calculateAverage.addEventListener('click', function(event){
+		event.preventDefault();
+		calculatePlatoonAcftAverage();
+		
+	});
+
 }
+
+function calculatePlatoonAcftAverage(){
+	console.log("We getting to calculate acft score?");
+	let xhr = new XMLHttpRequest();
+	xhr.open('GET',"api/soldiers/acfts");
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState === xhr.DONE){
+			if(xhr.status === 200){
+				let average = JSON.parse(xhr.responseText);
+				console.log(average);
+				displayAcftPlatoonAverage(average);
+
+
+			}
+			else{
+				console.log("Error in calculateAcft");
+			}
+		}
+	};
+	xhr.send();
+};
+
+function displayAcftPlatoonAverage(average){
+	let platoonAcftAverageDiv = document.getElementById('platoonAcftAverage');
+	platoonAcftAverageDiv.textContent = "";
+	
+	let h1 = document.createElement('h1');
+	platoonAcftAverageDiv.appendChild(h1);
+	h1.textContent = 'Platoon Average: ' + average;
+	
+	
+
+};
 
 function loadAllSoldiers(){
 	let xhr = new XMLHttpRequest();
@@ -162,13 +202,10 @@ function displaySoldier(soldier){
 	img.src = soldier.imageUrl;
 	addNewSoldierDiv.appendChild(img);
 	
-	//-----------Edit Button-------------------------------------------
+	//-----------Edit Button-----------------------------------------------------------------------------------------------------------------------
 	let editButton = document.createElement('button');
 	addNewSoldierDiv.appendChild(editButton);
 	editButton.textContent = 'Edit Soldier';
-	
-	
-	
 	
 
 	editButton.addEventListener('click',function(){
@@ -221,27 +258,52 @@ function displaySoldier(soldier){
 				rank: rank,
 				description: description,
 				dod: dod,
-				imageUrl: imageUrl 
-				
+				imageUrl: imageUrl 				
 						
 			};
 
-			editSoldier(soldierObj, soldierId);
-
-		
-		
+			editSoldier(soldierObj, soldierId);				
 	});
+	
+	
+	
+	
 	
 });
 
+//-----------Delete Button----------------------------------------------------------------------------------------------------------------------------------------------
+
+let deleteButton = document.createElement('button');
+addNewSoldierDiv.appendChild(deleteButton);
+deleteButton.textContent = ' Delete Soldier';
 
 
+deleteButton.addEventListener('click',function(){
+	console.log("DELETE CLICKED")
+	deleteSoldier(soldierId);
+	
+	});
 
+}  /*END OF FUNCTION*/
 
-
-
-
-
+/*unenable to false*/
+function deleteSoldier(soldierId){
+	let xhr = new XMLHttpRequest();
+	xhr.open('delete', `api/soldierun/${soldierId}`);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState === xhr.DONE){
+			if(xhr.status === 200  || xhr.status === 201){
+/*				console.log(JSON.parse(xhr.responseText));
+*/				loadAllSoldiers();
+			}
+			else{
+				displayError("Error creating soldier: " + xhr.status);
+			}
+		}
+	};
+	xhr.setRequestHeader("Content-type", "application/json");
+	let soldierJson = JSON.stringify(soldierId);
+	xhr.send(soldierJson);
 }
 
 

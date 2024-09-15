@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.skilldistillery.soldiers.entities.Acft;
 import com.skilldistillery.soldiers.entities.Soldier;
 import com.skilldistillery.soldiers.services.SoldierService;
 
@@ -46,6 +47,28 @@ public class SoldierController {
 		return soldier;
 	}
 
+	@GetMapping("soldiers/acfts")
+	public double getPlatoonsAcftAverage(HttpServletResponse res) {
+
+		List<Soldier> soldiers = soldierService.getAllSoldiers();
+		double sum = 0;
+		int count = 0;
+		for (Soldier sold : soldiers) {
+			if (sold.getAcfts().size() >=1) {
+			List<Acft> soldierAcfts = sold.getAcfts();
+			Acft lastAcft = soldierAcfts.get(soldierAcfts.size() - 1);
+			sum = sum + lastAcft.getScore();	
+			count = count + 1;
+			}
+			else {
+				
+			}
+
+		}
+		double average = sum / count;
+		return average;
+	}
+
 	@PostMapping("soldier")
 	public Soldier createSoldier(@RequestBody Soldier soldier, HttpServletResponse response,
 			HttpServletRequest request) {
@@ -69,16 +92,14 @@ public class SoldierController {
 			HttpServletResponse response) {
 		Soldier updatedSoldier = null;
 
-
 		if (soldier.getFirstName() == null || soldier.getLastName() == null) {
 			response.setStatus(HttpServletResponse.SC_BAD_REQUEST); // 400
 
-		}
-		else if (soldier != null) {
-			
+		} else if (soldier != null) {
+
 			updatedSoldier = soldierService.update(soldierId, soldier);
 			if (updatedSoldier == null) {
-				
+
 				response.setStatus(HttpServletResponse.SC_NOT_FOUND); // 404
 			}
 		}
@@ -89,12 +110,10 @@ public class SoldierController {
 	@DeleteMapping("soldier/{soldierId}")
 	public void deleteSoldier(@PathVariable("soldierId") int soldierId, HttpServletResponse response) {
 		Soldier soldier = soldierService.showSoldier(soldierId);
-		
-		if (soldier == null) 
-		{
+
+		if (soldier == null) {
 			response.setStatus(HttpServletResponse.SC_NOT_FOUND);
-		} else 
-		{
+		} else {
 			try {
 				soldierService.delete(soldierId);
 				response.setStatus(204);
@@ -106,7 +125,7 @@ public class SoldierController {
 
 	}
 
-	// unenable Soldier
+	// un-enable Soldier
 	@DeleteMapping("soldierun/{soldierId}")
 	public void unenableSoldier(@PathVariable("soldierId") int soldierId, HttpServletResponse response) {
 		Soldier soldier = soldierService.showSoldier(soldierId);

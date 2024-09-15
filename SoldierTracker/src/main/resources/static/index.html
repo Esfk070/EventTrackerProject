@@ -15,43 +15,53 @@
 <body>
 	<main class="container">
 		<h1>Welcome to Soldier Tracker</h1>
-		
-		<!-- Look up soldier by Id form -->
+		<!-- 	
+		Look up soldier by Id form
 		<form name="filmForm">
 			<input type="number" name="filmId">
 			<button name="lookup">Get Film by Id</button>
 		</form>
-		
-		<br>
-		<br>
-		
+		 -->
+		<!-- Caluclate ACFT Average -->
+		<div id="platoonAcftAverage">
+			<form name="acftAverage">
+				<!-- 			<input type="number" name="filmId">
+ -->
+				<button name="calculateAverage">Calculate Platoon ACFT
+					Average</button>
+			</form>
+		</div>
+		<br> <br>
+
 		<!-- Create Soldier Form -->
 		<form name="createSoldierForm">
-			<label for="firstName">First Name</label><br>
-			<input type="text" name="firstName"><br>
-
-			<label for="lastName">Last Name</label><br>
-			<input type="text" name="lastName"><br>	
-
-			<label for="rank">Rank</label><br>
-			<input type="text" name="rank"><br>	
+			<label for="firstName">First Name</label><br> 
+			<input type="text" name="firstName"><br> 
+			
+			<label for="lastName">Last
+				Name</label><br> 
+			<input type="text" name="lastName"><br> 
+			
+			<label for="rank">Rank</label><br> 
+			<input type="text" name="rank"><br>
 
 			<label for="description">Description</label><br>
-			<textarea name="description" rows="4" cols="40"></textarea><br>
-
-			<label for="dod">DOD</label><br>
-			<input type="number" name="dod"><br>
-			
+			<textarea name="description" rows="4" cols="40"></textarea>
+			<br> 
+			<label for="dod">DOD</label><br> 
+			<input type="number"
+				name="dod"><br> 
+				
 			<label for="imageUrl">Image URL</label><br>
-			<input type="text" name="imageUrl"><br>			
-						
+			<input type="text" name="imageUrl"><br>
+			
+
 			<button name="create">Add Soldier</button>
-		</form>		
-		
-		
+		</form>
+
+
 		<div id="soldiersTableDiv"></div>
-		<br>
-		<br>
+		<br> <br>
 		<div id="soldierListDiv">
 			<table>
 				<thead>
@@ -63,14 +73,10 @@
 				<tbody id="soldierListBody"></tbody>
 			</table>
 		</div>
-		<br>
-		<br>		
+		<br> <br>
 		<div id="soldierDetailsDiv"></div>
-		<br>
-		<br>
-		<div id="addNewSoldierDiv">
-		
-		</div>
+		<br> <br>
+		<div id="addNewSoldierDiv"></div>
 
 	</main>
 
