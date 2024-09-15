@@ -46,6 +46,7 @@ public class SoldierServiceImpl implements SoldierService {
 
 	@Override
 	public Soldier update(int soldierId, Soldier updatingSoldier) {
+		
 		Optional<Soldier> oldSoldierOpt= soldierRepo.findById(soldierId);
 		Soldier managedSoldier = null;
 		if(oldSoldierOpt.isPresent()) {
@@ -63,6 +64,8 @@ public class SoldierServiceImpl implements SoldierService {
 			managedSoldier.setProfile(updatingSoldier.getProfile());
 			managedSoldier.setQualificationScores(updatingSoldier.getQualificationScores());
 			managedSoldier.setWeapons(updatingSoldier.getWeapons());
+			managedSoldier.setEnabled(true);
+
 			
 			soldierRepo.saveAndFlush(managedSoldier);
 		}

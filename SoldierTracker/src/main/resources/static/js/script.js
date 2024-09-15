@@ -38,7 +38,7 @@ function loadAllSoldiers(){
 		if(xhr.readyState === xhr.DONE){
 			if(xhr.status === 200){
 				let soldiers = JSON.parse(xhr.responseText);
-				console.log(soldiers.length);
+				
 				displaySoldiersList(soldiers);
 			}
 			else{
@@ -54,7 +54,7 @@ function loadAllSoldiers(){
 function displaySoldiersList(soldiers){
 	
 	//FIXME
-	console.log('displaySoldiersList called');
+	
 	
 	let soldiersTableDiv = document.getElementById('soldiersTableDiv');
 	soldiersTableDiv.textContent = '';
@@ -99,8 +99,8 @@ function displaySoldiersList(soldiers){
 		
 		//Click row
 		row.addEventListener('click', function(){
-			console.log(soldier.firstName);
-			console.log("about to displaySoldier");
+			
+
 			displaySoldier(soldier);
 		})
 		table.append(row);
@@ -110,7 +110,7 @@ function displaySoldiersList(soldiers){
 
 
 function createSoldier(soldierObject){
-	console.log(soldierObject);
+	
 	
 	let xhr = new XMLHttpRequest();
 	xhr.open('POST', 'api/soldier');
@@ -131,7 +131,9 @@ function createSoldier(soldierObject){
 };
 
 function displaySoldier(soldier){
-	console.log("displaySoldier- " + soldier);
+
+	
+	let soldierId = soldier.id;
 	
 	let addNewSoldierDiv =  document.getElementById('addNewSoldierDiv');
 	addNewSoldierDiv.textContent='';
@@ -154,16 +156,113 @@ function displaySoldier(soldier){
 	li = document.createElement('li');
 	li.textContent = 'Profile:' + soldier.profile;
 	ul.appendChild(li);		
-
-//	let a = document.createElement('a');
-//	a.href = soldier.imageUrl;
-//	addNewSoldierDiv.appendChild(a);
 	
+	//Display Image of soldier
 	let img = document.createElement('img');
 	img.src = soldier.imageUrl;
 	addNewSoldierDiv.appendChild(img);
-
 	
+	//-----------Edit Button-------------------------------------------
+	let editButton = document.createElement('button');
+	addNewSoldierDiv.appendChild(editButton);
+	editButton.textContent = 'Edit Soldier';
+	
+	
+	
+	
+
+	editButton.addEventListener('click',function(){
+		let editForm = document.createElement('form');
+		addNewSoldierDiv.appendChild(editForm);
+		editForm.id = 'editForm';
+		
+
+		editForm.innerHTML = `
+		<label for="firstName">First Name</label><br>
+		<input type="text" name="firstName" value="${soldier.firstName}"><br>
+
+		<label for="lastName">Last Name</label><br>
+		<input type="text" name="lastName" value="${soldier.lastName}"><br>	
+
+		<label for="rank">Rank</label><br>
+		<input type="text" name="rank" value="${soldier.rank}"><br>	
+
+		<label for="description">Description</label><br>
+		<textarea name="description" rows="4" cols="40">${soldier.description}</textarea><br>
+
+		<label for="dod">DOD</label><br>
+		<input type="number" name="dod" value="${soldier.dod}"><br>
+
+		<label for="imageUrl">Image URL</label><br>
+		<input type="text" name="imageUrl" value="${soldier.imageUrl}"><br>			
+					
+		<button type = "button" id = "saveChangesButton">Save Changes</button>
+		
+		`;
+		
+	
+
+
+		let saveButton = document.getElementById('saveChangesButton');
+		//-----------Save Changes-------------------------------------------
+		saveButton.addEventListener('click', function(){
+			console.log("IS THIS BUTTON EVEN WORKING!!!!!!!");
+	
+			let firstName = editForm.firstName.value;
+			let lastName = editForm.lastName.value;
+			let rank = editForm.rank.value;
+			let description = editForm.description.value;
+			let dod = editForm.dod.value;
+			let imageUrl = editForm.imageUrl.value;
+			
+			let soldierObj = {
+				firstName: firstName,
+				lastName: lastName,
+				rank: rank,
+				description: description,
+				dod: dod,
+				imageUrl: imageUrl 
+				
+						
+			};
+
+			editSoldier(soldierObj, soldierId);
+
+		
+		
+	});
+	
+});
+
+
+
+
+
+
+
+
+
 }
 
+
+
+function editSoldier(soldierObject, soldierId){
+	
+	let xhr = new XMLHttpRequest();
+	xhr.open('PUT', `api/soldier/${soldierId}`);
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState === xhr.DONE){
+			if(xhr.status === 200  || xhr.status === 201){
+				displaySoldier(JSON.parse(xhr.responseText));
+				loadAllSoldiers();
+			}
+			else{
+				displayError("Error creating soldier: " + xhr.status);
+			}
+		}
+	};
+	xhr.setRequestHeader("Content-type", "application/json");
+	let soldierJson = JSON.stringify(soldierObject, soldierId);
+	xhr.send(soldierJson);
+};
 
