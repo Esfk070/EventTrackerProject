@@ -23,7 +23,10 @@ Full-stack project using MySQL, Spring Boot, Spring Data JPA.
   * Request: DELETE, URL: http://localhost:8085/api/soldierun/7
 
 ## HTML/JavaScript Front End using XHR/AJAX
-
+* User can Calculate the ACFT Physical Fitness Test Score for the entire platoon entered into the database.  Each soldier has a ACFT List, so this takes their last entered test scores of each soldier.
+* User can create a soldier and enter them into the Database.  The soldier when entered will be shows in the table below.
+* Soldier table shows active members of the Platoon.  WHen a soldier's row is clicked more information from the solider is shown below.
+* When a soldier is selected from the table the user is given the ability to edit or delete the current soldiers values.
 ##Database Schema 
 ![Database Schema](./src/main/resources/static/images/SoldierAppSchemaDiagram.png)
 ./src/main/resources/static/images/your-image-name.png
@@ -49,6 +52,8 @@ Full-stack project using MySQL, Spring Boot, Spring Data JPA.
 * Database construction needs to be done very deliberately and thoughtfully.  Every field and table should have an application to a planned feature as entity creation and testing can be time consuming.
 * Obtaining the correct error responses can be complicated. Methods returning objects or null and then subsequent methods performing null checks seems to be a good route to ensure that the proper errors are outputed
 * Reading the console output is critical for tracking down issues, especially that user stories are stretching through multiple java files.
+* Syntax in the java script file must be done extra carefully as there is limited compiler or error information.
+* JsonIgnore will block fields being transfered to the JavaScript side of the program.  In the future it seems I will need to make additional controller mappings to circumvent this issue.
 
 ## Where to go from here
 * I think there is a market for a consolidated user friendly App for military personel to track service member and equipment information.  I would like this app to be able help facilitate this need.
