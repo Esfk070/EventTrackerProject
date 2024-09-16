@@ -25,8 +25,8 @@ Full-stack project using MySQL, Spring Boot, Spring Data JPA.
 ## HTML/JavaScript Front End using XHR/AJAX
 
 ##Database Schema 
-![Database Schema](./src/main/resources/static/images)
-
+![Database Schema](./src/main/resources/static/images/SoldierAppSchemaDiagram.png)
+./src/main/resources/static/images/your-image-name.png
 ## REST Endpoints
 | HTTP Verb | URI                  | Request Body | Response Body | Response Codes |
 |-----------|----------------------|--------------|---------------|----------------|
