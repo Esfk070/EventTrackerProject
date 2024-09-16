@@ -28,7 +28,7 @@ Full-stack project using MySQL, Spring Boot, Spring Data JPA.
 * Soldier table shows active members of the Platoon.  WHen a soldier's row is clicked more information from the solider is shown below.
 * When a soldier is selected from the table the user is given the ability to edit or delete the current soldiers values.
 ##Database Schema 
-![Database Schema](./images/SoldierAppSchemaDiagram.png)
+![Database Schema](SoldierTracker/src/main/resources/static/images/SoldierAppSchemaDiagram.png)
 ./src/main/resources/static/images/your-image-name.png
 ## REST Endpoints
 | HTTP Verb | URI                  | Request Body | Response Body | Response Codes |
