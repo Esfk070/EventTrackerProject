@@ -36,7 +36,7 @@ public class SoldierController {
 		return soldierService.getAllSoldiers();
 	}
 
-	@GetMapping("soldier/{id}")
+	@GetMapping("soldiers/{id}")
 	public Soldier getSoldierById(@PathVariable("id") Integer id, HttpServletResponse res) {
 		Soldier soldier = soldierService.showSoldier(id);
 		if (soldier == null) {
@@ -73,7 +73,7 @@ public class SoldierController {
 		return average;
 	}
 
-	@PostMapping("soldier")
+	@PostMapping("soldiers")
 	public Soldier createSoldier(@RequestBody Soldier soldier, HttpServletResponse response,
 			HttpServletRequest request) {
 
@@ -91,7 +91,7 @@ public class SoldierController {
 		return createdSoldier;
 	}
 
-	@PutMapping("soldier/{soldierId}")
+	@PutMapping("soldiers/{soldierId}")
 	public Soldier updateSoldier(@PathVariable("soldierId") int soldierId, @RequestBody Soldier soldier,
 			HttpServletResponse response) {
 		Soldier updatedSoldier = null;
@@ -111,7 +111,7 @@ public class SoldierController {
 		return updatedSoldier;
 	}
 
-	@DeleteMapping("soldier/{soldierId}")
+	@DeleteMapping("soldiers/{soldierId}")
 	public void deleteSoldier(@PathVariable("soldierId") int soldierId, HttpServletResponse response) {
 		Soldier soldier = soldierService.showSoldier(soldierId);
 
@@ -130,7 +130,7 @@ public class SoldierController {
 	}
 
 	// un-enable Soldier
-	@DeleteMapping("soldierun/{soldierId}")
+	@DeleteMapping("soldiers/{soldierId}/un")
 	public void unenableSoldier(@PathVariable("soldierId") int soldierId, HttpServletResponse response) {
 		Soldier soldier = soldierService.showSoldier(soldierId);
 		if (soldier == null) {

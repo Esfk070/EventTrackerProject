@@ -5,8 +5,8 @@ export class Soldier {
   militaryRank: string;
   firstName: string;
   lastName: string;
-  createDate: string | undefind;
-  lastUpdate: string | undefind;
+  createDate: string | undefined;
+  lastUpdate: string | undefined;
   imageUrl: string;
   enabled: boolean;
   profile: boolean;
