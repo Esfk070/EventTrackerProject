@@ -25,6 +25,7 @@ export class Soldier {
     profile: boolean = false,
     description: string = '',
     dod: number=0,
+    // user: User;
   )
   {
     this.id=id;

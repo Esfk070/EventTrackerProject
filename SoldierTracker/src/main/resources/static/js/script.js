@@ -153,7 +153,7 @@ function createSoldier(soldierObject){
 	
 	
 	let xhr = new XMLHttpRequest();
-	xhr.open('POST', 'api/soldier');
+	xhr.open('POST', 'api/soldiers');
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState === xhr.DONE){
 			if(xhr.status === 200  || xhr.status === 201){
@@ -278,7 +278,8 @@ addNewSoldierDiv.appendChild(deleteButton);
 deleteButton.textContent = ' Delete Soldier';
 
 
-deleteButton.addEventListener('click',function(){
+deleteButton.addEventListener('click',function(evt){
+	evt.preventDefault();
 	console.log("DELETE CLICKED")
 	deleteSoldier(soldierId);
 	
@@ -289,7 +290,7 @@ deleteButton.addEventListener('click',function(){
 /*unenable to false*/
 function deleteSoldier(soldierId){
 	let xhr = new XMLHttpRequest();
-	xhr.open('delete', `api/soldierun/${soldierId}`);
+	xhr.open('PATCH', `api/soldiers/${soldierId}`);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState === xhr.DONE){
 			if(xhr.status === 200  || xhr.status === 201){
@@ -311,7 +312,7 @@ function deleteSoldier(soldierId){
 function editSoldier(soldierObject, soldierId){
 	
 	let xhr = new XMLHttpRequest();
-	xhr.open('PUT', `api/soldier/${soldierId}`);
+	xhr.open('PUT', `api/soldiers/${soldierId}`);
 	xhr.onreadystatechange = function(){
 		if(xhr.readyState === xhr.DONE){
 			if(xhr.status === 200  || xhr.status === 201){

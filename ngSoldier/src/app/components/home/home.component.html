@@ -1,6 +1,20 @@
 <h1>Welcome, Soldier</h1>
 
+<!------------------------ SOLDIER TABLE---------------------- -->
 <ul>
-
   <li *ngFor="let soldier of soldiers">{{soldier.firstName}}</li>
 </ul>
+
+
+<!------------------------ CREATE SOLDIER FORM---------------------- -->
+<form >
+  <p>First Name: <input type="text" name="firstName" [(ngModel)]="newSoldier.firstName"><br></p>
+  <p>Last Name:  <input type="text" name="lastName" [(ngModel)]="newSoldier.lastName"><br></p>
+  <p>Rank:<input type="text" name="rank" [(ngModel)]="newSoldier.militaryRank"><br></p>
+  <p>Image URL: <input type="text" name="imageUrl" [(ngModel)]="newSoldier.imageUrl"><br></p>
+  <p>DOD: <input type="number" name="dod" [(ngModel)]="newSoldier.dod"><br></p>
+
+  <input (click)="addSoldier(newSoldier)" type="submit" value="Add Item"/>
+
+
+</form>

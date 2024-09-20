@@ -33,6 +33,26 @@ index(): Observable<Soldier[]>{
 
 }
 
+// TODO: retrieve, create, update destroy methods
+
+create(soldier: Soldier) : Observable<Soldier>{
+  return this.http.post<Soldier>(this.url, soldier).pipe(
+    catchError((err:any) => {
+      console.log(err);
+      return throwError(
+        () =>new Error('SoldierService.create() : error adding soldier: ' + err)
+      );
+    })
+  );
+}
+
+
+
+
+
+
+
+
 
 
 }

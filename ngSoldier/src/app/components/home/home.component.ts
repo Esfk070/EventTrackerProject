@@ -18,6 +18,8 @@ export class HomeComponent implements OnInit {
 
   ///----------------------------FIELDS--------------------------------------------------------------
   soldiers: Soldier[] = [];
+  newSoldier: Soldier = new Soldier();
+  editSoldier: Soldier | null = null
   ///----------------------------CONSTRUCTOR and ngOnInit--------------------------------------------------------------
 
   constructor(
@@ -41,5 +43,24 @@ export class HomeComponent implements OnInit {
       }
     } );
   }
+
+//TODO detail div with selected cave
+//PENDING:  form to create new cave
+addSoldier(soldier : Soldier){
+  this.soldierService.create(soldier).subscribe({
+    next: (createdSoldier) => {
+      this.reloadSoldiers();
+      this.newSoldier = new Soldier();
+    },
+    error: (oopsy) => {
+      console.error('Error creating Soldier: ');
+      console.error(oopsy);
+    }
+  })
+}
+
+//TODO update form
+//TODO delete button - where? in list or detail view?
+//TODO models for FormationType, CaveVisit, User
 
 }
