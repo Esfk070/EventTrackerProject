@@ -65,6 +65,7 @@ public class SoldierServiceImpl implements SoldierService {
 			managedSoldier.setQualificationScores(updatingSoldier.getQualificationScores());
 			managedSoldier.setWeapons(updatingSoldier.getWeapons());
 			managedSoldier.setEnabled(true);
+			managedSoldier.setMilitaryRank(updatingSoldier.getMilitaryRank());
 
 			
 			soldierRepo.saveAndFlush(managedSoldier);

@@ -47,10 +47,38 @@ create(soldier: Soldier) : Observable<Soldier>{
 }
 
 
+destroy(soldierId: number): Observable<void>{
+  return this.http.delete<void>(this.url + "/"+ soldierId).pipe(
+    catchError((err: any)=>{
+      console.error(err);
+      return throwError(
+        () => new Error( 'TodoService.index(): error deleting Todo: ' + err)
+      );
+    })
+  )
+};
 
+update(soldier: Soldier) : Observable<Soldier>{
+  return this.http.put<Soldier>(this.url + "/" + soldier.id, soldier).pipe(
+    catchError((err: any) =>{
+      console.log(err);
+      return throwError(
+        () => new Error('SoldierService.update(): error updating soldier: ' + err)
+      );
+    })
+  )
+}
 
-
-
+calcPltAcftAvg() : Observable <number>{
+  return this.http.get<number>(this.url+ "/"+"acfts").pipe(
+    catchError((err: any) =>{
+      console.log(err);
+      return throwError(
+        () => new Error('SoldierService.update(): error  Calculating Platoon ACFT average: ' + err)
+      );
+    })
+  )
+}
 
 
 

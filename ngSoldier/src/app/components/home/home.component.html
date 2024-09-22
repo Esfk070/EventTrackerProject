@@ -1,20 +1,132 @@
-<h1>Welcome, Soldier</h1>
+<div class="container mt-4">
+<h1 class="text-center">PLATOON TRACKER</h1>
 
 <!------------------------ SOLDIER TABLE---------------------- -->
-<ul>
+<table class="table"  *ngIf = "!selected && !viewPltData" >
+  <thead>
+    <tr>
+      <td>Rank</td>
+      <td>First Name</td>
+      <td>Last Name</td>
+      <td>DOD</td>
+      <td>Image</td>
+    </tr>
+  </thead>
+
+<tbody >
+  <tr *ngFor="let soldier of soldiers">
+    <td>{{soldier.militaryRank}}</td>
+    <td>{{soldier.firstName}}</td>
+    <td>{{soldier.lastName}}</td>
+    <td>{{soldier.dod}}</td>
+    <td>
+      <img (click)="displaySoldier(soldier)" [src]="soldier.imageUrl" class="img-fluid" style="width: 100px; height: 100px; object-fit: cover">
+    </td>
+  </tr>
+</tbody>
+</table>
+<br>
+<br>
+<!-- <ul>
   <li *ngFor="let soldier of soldiers">{{soldier.firstName}}</li>
-</ul>
+</ul> -->
 
 
 <!------------------------ CREATE SOLDIER FORM---------------------- -->
-<form >
+<form  *ngIf = "!selected && !viewPltData">
   <p>First Name: <input type="text" name="firstName" [(ngModel)]="newSoldier.firstName"><br></p>
   <p>Last Name:  <input type="text" name="lastName" [(ngModel)]="newSoldier.lastName"><br></p>
   <p>Rank:<input type="text" name="rank" [(ngModel)]="newSoldier.militaryRank"><br></p>
   <p>Image URL: <input type="text" name="imageUrl" [(ngModel)]="newSoldier.imageUrl"><br></p>
   <p>DOD: <input type="number" name="dod" [(ngModel)]="newSoldier.dod"><br></p>
-
   <input (click)="addSoldier(newSoldier)" type="submit" value="Add Item"/>
-
-
 </form>
+
+<!------------------------ View platoon data Button---------------------- -->
+<br>
+<br>
+<div *ngIf="!viewPltData">
+  <input class="btn btn-primary" (click)="showViewPlatoonData()" type="button" value="View Platoon Data"/>
+</div>
+<!------------------------ View platoon data DIV---------------------- -->
+
+<div *ngIf = "viewPltData">
+  <h1>Platoon Data</h1>
+  <p>Platoon ACFT Average: {{acftAverage}}</p>
+  <p>Platoon Count: {{numberOfSoldiers}}</p>
+
+  <p>Show by Rank</p>
+  <div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+      Rank
+    </button>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" (click)="showRank('SGT')" href="#">SGT</a></li>
+      <li><a class="dropdown-item" (click)="showRank('SFC')" href="#">SFC</a></li>
+      <li><a class="dropdown-item" (click)="showRank('MSG')" href="#">MSG</a></li>
+    </ul>
+    <table class="table"  *ngIf = "rank" >
+      <thead>
+        <tr>
+          <td>Rank</td>
+          <td>First Name</td>
+          <td>Last Name</td>
+          <td>DOD</td>
+          <td>Image</td>
+        </tr>
+      </thead>
+
+    <tbody >
+      <tr *ngFor="let soldier of soldiers | rankFinder: rank">
+        <td>{{soldier.militaryRank}}</td>
+        <td>{{soldier.firstName}}</td>
+        <td>{{soldier.lastName}}</td>
+        <td>{{soldier.dod}}</td>
+        <td>
+          <img (click)="displaySoldier(soldier)" [src]="soldier.imageUrl" class="img-fluid" style="width: 100px; height: 100px; object-fit: cover">
+        </td>
+      </tr>
+    </tbody>
+    </table>
+    <button class="btn btn-primary" (click)="showList()">View List</button>
+
+
+  </div>
+</div>
+
+<!------------------------ DETAILED SOlLIDER VIEW DIV---------------------- -->
+
+<div *ngIf="selected && !editSoldier">
+  <img [src]="selected.imageUrl" />
+  <p>Rank: {{selected.militaryRank}}</p>
+  <p>First Name: {{selected.firstName}}</p>
+  <p>Last Name: {{selected.lastName}}</p>
+  <p>DOD: {{selected.dod}}</p>
+  <p>Description: {{selected.description}}</p>
+  <p>Profile: {{selected.profile}}</p>
+  <p>
+    <button class="btn btn-primary" (click)="showList()">View List</button>
+     <button class="btn btn-primary" (click)="setEditSoldier()">Edit Soldier</button>
+     <button class="btn btn-primary" (click)="deleteSoldier(selected.id)">Delete Soldier</button>
+  </p>
+</div>
+
+<!-------------------------------------------- Edit Div------------------------------------------- -->
+
+<div *ngIf="editSoldier && selected">
+  <form>
+    <p>First Name: <input type="text" name="firstName" [(ngModel)]="editSoldier.firstName"><br></p>
+    <p>Last Name:  <input type="text" name="lastName" [(ngModel)]="editSoldier.lastName"><br></p>
+    <p>Rank:<input type="text" name="rank" [(ngModel)]="editSoldier.militaryRank"><br></p>
+    <p>Image URL: <input type="text" name="imageUrl" [(ngModel)]="editSoldier.imageUrl"><br></p>
+    <p>DOD: <input type="number" name="dod" [(ngModel)]="editSoldier.dod"><br></p>
+    <input (click)="updateSoldier(editSoldier)" type="button" value="Save Changes"/>
+
+    <input (click)="editSoldier=null" type="submit" value="Cancel"/>br
+    <br>
+
+  </form>
+
+
+</div>
+</div>

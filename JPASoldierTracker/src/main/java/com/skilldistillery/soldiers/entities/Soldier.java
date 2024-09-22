@@ -171,11 +171,11 @@ public class Soldier {
 
 	
 	
-	public String getRank() {
+	public String getMilitaryRank() {
 		return militaryRank;
 	}
 
-	public void setRank(String rank) {
+	public void setMilitaryRank(String rank) {
 		this.militaryRank = rank;
 	}
 
