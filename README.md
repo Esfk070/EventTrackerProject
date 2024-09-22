@@ -19,7 +19,7 @@ Full-stack project using MySQL, Spring Boot, Spring Data JPA.
  * Additionallay The user can view the platoon by their rank through the drop down menu. 
 
 
-
+## Postman Test URLs
 * In Postman, you may view all, view by id, add, update, and delete a new Soldier data entry
 * View All Soldiers
   * Request: GET, URL: http://localhost:8085/api/soldiers
