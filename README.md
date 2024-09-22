@@ -7,6 +7,19 @@ Week 12 homework for Sill Distillery.
 Full-stack project using MySQL, Spring Boot, Spring Data JPA.
 
 ## How to run
+* To start the website run the following command from the ngSoldier directory
+  * ng serve -o --port=8085
+* From the Main page, all of the service members in the platoon are shown.
+* The information displayed is rank, first and last name, DOD number, and image.
+* If the service members image is clicked detailed view will be shown.
+  * From here the user is given the option to edit the service members information, delete the service member, or return to the platoon table view.
+* below the Platoon Table is the create soldier form.  When all the soldiers information is entered the new service member will be added to the Platoon table
+* Below the create soldier table is the Platoon Data button. Upon pressing, the user will be shown Platoon statistics.
+ * The user can view the Platoon's ACFT average score and the count of the service members in the platoon
+ * Additionallay The user can view the platoon by their rank through the drop down menu. 
+
+
+
 * In Postman, you may view all, view by id, add, update, and delete a new Soldier data entry
 * View All Soldiers
   * Request: GET, URL: http://localhost:8085/api/soldiers
